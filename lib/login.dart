@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -22,7 +24,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // TODO: Add text editing controllers (101)
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  // TODO: Name
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,11 +44,45 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             const SizedBox(height: 120.0),
-            // TODO: Wrap Username with AccentColorOverride (103)
-            // TODO: Remove filled: true values (103)
-            // TODO: Wrap Password with AccentColorOverride (103)
-            // TODO: Add TextField widgets (101)
-            // TODO: Add button bar (101)
+            TextField(
+              controller: _usernameController,
+              decoration: InputDecoration(filled: true, labelText: 'Username'),
+            ),
+            const SizedBox(height: 12.0),
+            TextField(
+              controller: _passwordController,
+              decoration: InputDecoration(
+                filled: true,
+                labelText: 'Password',
+              ),
+            ),
+            // ignore: prefer_const_constructors
+            ButtonBar(
+              // TODO: Add a beveled rectanguler border to CANCEL
+              children: <Widget>[
+                TextButton(
+                  child: const Text('CANCEL'),
+                  onPressed: () {
+                    _usernameController.clear();
+                    _passwordController.clear();
+                  },
+                ),
+                ElevatedButton(
+                  child: const Text('NEXT'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                )
+                // TODO: Add Buttons
+              ],
+
+              // TODO: Wrap Username with AccentColorOverride (103)
+
+              // TODO: Remove filled: true values (103)
+              // TODO: Wrap Password with AccentColorOverride (103)
+              // TODO: Add TextField widgets (101)
+              // TODO: Add button bar (101)
+            )
           ],
         ),
       ),
